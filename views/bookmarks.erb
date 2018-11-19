@@ -1,4 +1,6 @@
 <h1>Your list of bookmarks</h1>
 <ul>
-      <li>http://www.google.com/</li>
+ <% @new_list.each do |bookmark| %>
+   <li><%= bookmark.url %></li>
+ <% end %>
 </ul>
