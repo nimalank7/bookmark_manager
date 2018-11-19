@@ -7,4 +7,8 @@ feature 'Testing index page' do
     visit('/bookmarks')
     expect(page).to have_content("http://www.google.com/")
   end
+  scenario "Viewing our bookmarks" do
+    visit('/bookmarks')
+    expect(page).to have_content("http://www.microsoft.com/")
+  end
 end
