@@ -5,10 +5,14 @@ feature 'Testing index page' do
   end
   scenario "Viewing our bookmarks" do
     visit('/bookmarks')
-    expect(page).to have_content("http://www.google.com/")
+    expect(page).to have_content("http://www.makersacademy.com")
   end
   scenario "Viewing our bookmarks" do
     visit('/bookmarks')
-    expect(page).to have_content("http://www.microsoft.com/")
+    expect(page).to have_content("http://google.com")
+  end
+  scenario "Viewing our bookmarks" do
+    visit('/bookmarks')
+    expect(page).to have_content("http://www.destroyallsoftware.com")
   end
 end

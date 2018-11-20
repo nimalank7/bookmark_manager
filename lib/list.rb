@@ -1,21 +1,13 @@
-require_relative "./bookmark.rb"
-
+require 'pg'
 class List
   attr_accessor :contents
   def initialize
-
     @contents = []
   end
 
-  def see_list
-    @contents
+  def self.see_list
+    con = PG.connect :dbname => 'bookmark_manager'
+    rs = con.exec 'SELECT * FROM bookmarks'
   end
 
-  def self.create_instance
-    @list = List.new
-  end
-
-  def self.read_instance
-    @list
-  end
 end

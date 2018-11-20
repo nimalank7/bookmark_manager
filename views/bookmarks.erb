@@ -1,6 +1,6 @@
 <h1>Your list of bookmarks</h1>
 <ul>
  <% @new_list.each do |bookmark| %>
-   <li><%= bookmark.url %></li>
+   <li><%= bookmark['url'] %></li>
  <% end %>
 </ul>
