@@ -1,4 +1,5 @@
 feature 'Testing index page' do
+  before(:each) { add_bookmarks }
   scenario "Returns Hello World" do
     visit('/')
     expect(page).to have_content("Hello World!")

@@ -1,4 +1,5 @@
 require 'pg'
+
 class List
   attr_accessor :contents
   def initialize
@@ -6,8 +7,12 @@ class List
   end
 
   def self.see_list
-    con = PG.connect :dbname => 'bookmark_manager'
-    rs = con.exec 'SELECT * FROM bookmarks'
+    if ENV['ENVIRONMENT'] == 'test'
+      con = PG.connect :dbname => 'bookmark_manager_test'
+    else
+      con = PG.connect :dbname => 'bookmark_manager'
+    end
+    con.exec 'SELECT * FROM bookmarks'
   end
 
 end
