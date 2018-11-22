@@ -3,7 +3,6 @@ require_relative '../app.rb'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
-require 'pg'
 require_relative './setup_test_database.rb'
 Capybara.app = BookmarkManager
 
