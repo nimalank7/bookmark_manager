@@ -19,6 +19,7 @@ feature 'Testing index page' do
   scenario "Create bookmark codeacademy and expect it on page" do
     visit('/bookmarks')
     fill_in('url', with: "http://www.codeacademy.com")
+    fill_in('title', with: "Code Academy")
     click_button("Submit")
     expect(page).to have_content("Code Academy")
   end
