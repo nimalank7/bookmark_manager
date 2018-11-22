@@ -1,7 +1,7 @@
 <h1>Your list of bookmarks</h1>
 <ul>
  <% @new_list.each do |bookmark| %>
-   <li><a href= <%= bookmark['url'] %>><%= bookmark['url'] %></a></li>
+   <li><a href= <%= bookmark['url'] %>><%= bookmark['title'] %></a></li>
  <% end %>
 </ul>
 <form action="/create_bookmark" method="POST">

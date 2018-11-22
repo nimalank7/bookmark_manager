@@ -16,6 +16,9 @@ describe List do
     expect(bookmarks[2]['url']).to eq "http://www.destroyallsoftware.com"
   end
   it "returns yahoo.com as the url" do
-    expect(List.create_bookmark("http://www.yahoo.com")[0]['url']).to eq "http://www.yahoo.com"
+    result = List.create_bookmark("http://www.yahoo.com", "Yahoo")
+    expect(result[0]['url']).to eq "http://www.yahoo.com"
+    expect(result[0]['title']).to eq "Yahoo"
   end
+
 end

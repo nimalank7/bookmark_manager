@@ -6,20 +6,20 @@ feature 'Testing index page' do
   end
   scenario "Viewing our bookmarks and expect to have makers" do
     visit('/bookmarks')
-    expect(page).to have_content("http://www.makersacademy.com")
+    expect(page).to have_content("Makers Academy")
   end
   scenario "Viewing our bookmarks and to have google" do
     visit('/bookmarks')
-    expect(page).to have_content("http://google.com")
+    expect(page).to have_content("Google")
   end
   scenario "Viewing our bookmarks and to have destroyallsoftware" do
     visit('/bookmarks')
-    expect(page).to have_content("http://www.destroyallsoftware.com")
+    expect(page).to have_content("Destroy all software")
   end
   scenario "Create bookmark codeacademy and expect it on page" do
     visit('/bookmarks')
     fill_in('url', with: "http://www.codeacademy.com")
     click_button("Submit")
-    expect(page).to have_content("http://www.codeacademy.com")
+    expect(page).to have_content("Code Academy")
   end
 end
