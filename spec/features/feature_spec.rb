@@ -23,4 +23,9 @@ feature 'Testing index page' do
     click_button("Submit")
     expect(page).to have_content("Code Academy")
   end
+  scenario "Deleting Google bookmark and hence no longer on page" do
+    visit('/bookmarks')
+    click_button("Delete_Google")
+    expect(page).not_to have_content("Google")
+  end
 end
