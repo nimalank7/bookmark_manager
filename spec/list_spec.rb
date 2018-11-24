@@ -31,12 +31,12 @@ describe List do
   end
   it "updates the URL of Apple bookmark to Microsoft Windows" do
     bookmark = List.create_bookmark("http://www.apple.com/uk/mac", "Apple")
-    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id)
+    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id.to_i)
     expect(result.url).to eq "http://www.windows.com"
   end
   it "updates the title of Apple bookmark to Microsoft Windows" do
     bookmark = List.create_bookmark("http://www.apple.com/uk/mac", "Apple")
-    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id)
+    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id.to_i)
     expect(result.title).to eq "Microsoft Windows"
   end
 end
