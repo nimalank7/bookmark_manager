@@ -24,19 +24,19 @@ describe List do
     result = List.create_bookmark("http://www.yahoo.com", "Yahoo")
     expect(result.title).to eq "Yahoo"
   end
-  it "initializing the id instance variable to 1" do
-    expect(list.id).to eq 1
-  end
-
-  it "initializing the title instance variable to Microsoft" do
-    expect(list.title).to eq "Microsoft"
-  end
-  it "initializing the url instance variable to http://www.microsoft.com" do
-    expect(list.url).to eq "http://www.microsoft.com"
-  end
   it "deletes the URL http://www.yahoo.com" do
     List.create_bookmark("http://www.yahoo.com", "Yahoo")
     List.delete_bookmark("http://www.yahoo.com")
     expect(List.see_list.length).to eq 3
+  end
+  it "updates the URL of Apple bookmark to Microsoft Windows" do
+    bookmark = List.create_bookmark("http://www.apple.com/uk/mac", "Apple")
+    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id)
+    expect(result.url).to eq "http://www.windows.com"
+  end
+  it "updates the title of Apple bookmark to Microsoft Windows" do
+    bookmark = List.create_bookmark("http://www.apple.com/uk/mac", "Apple")
+    result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id)
+    expect(result.title).to eq "Microsoft Windows"
   end
 end

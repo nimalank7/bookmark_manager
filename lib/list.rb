@@ -16,7 +16,7 @@ class List
       connection = PG.connect :dbname => 'bookmark_manager'
     end
       result = connection.exec 'SELECT * FROM bookmarks'
-      value = result.map do |bookmark|
+      array_of_bookmarks = result.map do |bookmark|
         List.new(bookmark['id'], bookmark['title'], bookmark['url'])
       end
   end
@@ -36,5 +36,14 @@ class List
       connection = PG.connect :dbname => 'bookmark_manager'
     end
     connection.exec "DELETE FROM bookmarks WHERE url='#{url}'"
+  end
+  def self.update_bookmark(url, title, id)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect :dbname => 'bookmark_manager_test'
+    else
+      connection = PG.connect :dbname => 'bookmark_manager'
+    end
+    result = connection.exec ("UPDATE bookmarks SET url='#{url}', title='#{title}' WHERE id='#{id}' RETURNING id, title, url;")
+    List.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 end
