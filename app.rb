@@ -40,12 +40,19 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/search_results' do
-    session[:search] = params[:search]
+    @results = List.find_bookmark(params[:search])
+    if @results.length == 0
+      redirect to('not_found')
+    end
     redirect to('/search_results')
   end
 
+  get '/not_found' do
+    erb(:not_found)
+  end
+
   get '/search_results' do
-    @results = List.find_bookmark(session[:search])
+    @results = List.search_results
     erb(:search_results)
   end
 

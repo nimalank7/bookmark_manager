@@ -57,4 +57,22 @@ feature 'Testing Search Capabilites:' do
     click_button("Home")
     expect(current_path).to eq("/bookmarks")
   end
+  scenario "Returns not found search" do
+    visit('/bookmarks')
+    fill_in('search', with: "http://www.nobookmark.com")
+    click_button("Search")
+    expect(current_path).to eq("/not_found")
+    expect(page).to have_content("Bookmark not found")
+    click_button("Home")
+    expect(current_path).to eq("/bookmarks")
+  end
+  scenario "Return to home after not found search" do
+    visit('/bookmarks')
+    fill_in('search', with: "http://www.nobookmark.com")
+    click_button("Search")
+    expect(current_path).to eq("/not_found")
+    expect(page).to have_content("Bookmark not found")
+    click_button("Home")
+    expect(current_path).to eq("/bookmarks")
+  end
 end

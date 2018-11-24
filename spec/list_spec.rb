@@ -44,11 +44,11 @@ describe List do
     expect(bookmark[0].title).to eq "Google"
   end
   it "finds a bookmark by Google's URL and returns it" do
-    bookmark = List.find_bookmark("http://google.com")
-    expect(bookmark[0].url).to eq "http://google.com"
+    List.find_bookmark("http://google.com")
+    expect(List.search_results[0].url).to eq "http://google.com"
   end
   it "doesn't finds a bookmark returns empty array" do
-    bookmark = List.find_bookmark("http://www.hotmail.com")
-    expect(bookmark).to eq []
+    List.find_bookmark("http://www.hotmail.com")
+    expect(List.search_results).to eq []
   end
 end

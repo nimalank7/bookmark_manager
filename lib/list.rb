@@ -48,8 +48,11 @@ class List
   end
   def self.find_bookmark(search = nil)
     bookmarks = List.see_list
-    results = bookmarks.select do |bookmark|
-      bookmark.url == search || bookmark.title == search
+    @results = bookmarks.select do |bookmark|
+      bookmark.url == search || bookmark.title == search # I should downcase this
     end
+  end
+  def self.search_results
+    @results # Need to write TDD for this
   end
 end
