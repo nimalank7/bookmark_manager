@@ -46,4 +46,10 @@ class List
     result = connection.exec ("UPDATE bookmarks SET url='#{url}', title='#{title}' WHERE id=#{id} RETURNING id, title, url;")
     List.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
+  def self.find_bookmark(search = nil)
+    bookmarks = List.see_list
+    results = bookmarks.select do |bookmark|
+      bookmark.url == search || bookmark.title == search
+    end
+  end
 end

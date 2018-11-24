@@ -39,4 +39,16 @@ describe List do
     result = List.update_bookmark("http://www.windows.com", "Microsoft Windows", bookmark.id.to_i)
     expect(result.title).to eq "Microsoft Windows"
   end
+  it "finds a bookmark by title 'Google' and returns it" do
+    bookmark = List.find_bookmark("Google")
+    expect(bookmark[0].title).to eq "Google"
+  end
+  it "finds a bookmark by Google's URL and returns it" do
+    bookmark = List.find_bookmark("http://google.com")
+    expect(bookmark[0].url).to eq "http://google.com"
+  end
+  it "doesn't finds a bookmark returns empty array" do
+    bookmark = List.find_bookmark("http://www.hotmail.com")
+    expect(bookmark).to eq []
+  end
 end

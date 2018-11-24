@@ -1,6 +1,6 @@
-<h1>Your list of bookmarks</h1>
+<h1>Search Results:</h1>
 <ul>
- <% @new_list.each do |bookmark| %>
+ <% @results.each do |bookmark| %>
    <li><a href= <%= bookmark.url %>><%= bookmark.title %></a></li>
    <form action="/delete_bookmark" method="POST">
      <input id="hidden" type="hidden" name="_method" value="delete">
@@ -11,14 +11,7 @@
    </form>
  <% end %>
 </ul>
-<h1>Add a bookmark</h1>
-<form action="/create_bookmark" method="POST">
-  <input type="text" name="title" placeholder="Title" />
-  <input type="text" name="url" placeholder="URL" />
-  <input type="submit" value="Submit" />
-</form>
-<h1>Find a bookmark</h1>
-<form action="/search_results" method="POST">
-  <input type="text" name="search" placeholder="Enter a title or URL" />
-  <input type="submit" value="Search" />
+<h1>Return to bookmarks</h1>
+<form action="/bookmarks" method="GET">
+  <input type="submit" value="Home" />
 </form>

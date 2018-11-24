@@ -39,5 +39,15 @@ class BookmarkManager < Sinatra::Base
     redirect to('/bookmarks')
   end
 
+  post '/search_results' do
+    session[:search] = params[:search]
+    redirect to('/search_results')
+  end
+
+  get '/search_results' do
+    @results = List.find_bookmark(session[:search])
+    erb(:search_results)
+  end
+
   run! if app_file == $0
 end

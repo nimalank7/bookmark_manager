@@ -43,4 +43,18 @@ feature 'Testing Bookmark Manager:' do
     click_button("Update")
     expect(current_path).to eq("/bookmarks")
   end
+  scenario "Search for bookmark by title - Google - returns results page" do
+    visit('/bookmarks')
+    fill_in('search', with: "Google")
+    click_button("Search")
+    expect(current_path).to eq("/search_results")
+    expect(page).to have_content("Google")
+  end
+  scenario "Search for bookmark by URL - Google - returns results page" do
+    visit('/bookmarks')
+    fill_in('search', with: "http://google.com")
+    click_button("Search")
+    expect(current_path).to eq("/search_results")
+    expect(page).to have_content("Google")
+  end
 end
