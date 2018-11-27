@@ -2,9 +2,10 @@ require 'pg'
 
 def setup_test_database
   connection = PG.connect dbname: 'bookmark_manager_test'
-  connection.exec 'TRUNCATE Comments'
-  connection.exec 'TRUNCATE bookmarks CASCADE'
-
+  connection.exec 'DROP TABLE bookmarks CASCADE'
+  connection.exec 'DROP TABLE IF EXISTS Comments'
+  connection.exec 'CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60), title VARCHAR(60))'
+  connection.exec 'CREATE TABLE Comments (Comment_ID SERIAL PRIMARY KEY, Body VARCHAR(240), Bookmark_id INTEGER, FOREIGN KEY (Bookmark_id) REFERENCES Bookmarks (id))'
 end
 
 def add_bookmarks
