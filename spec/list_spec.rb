@@ -51,4 +51,8 @@ describe List do
     List.find_bookmark("http://www.hotmail.com")
     expect(List.search_results).to eq []
   end
+  it "returns false if invalid URL typed in" do
+    List.create_bookmark("hotmail", "Hotmail")
+    expect(List.create_bookmark("hotmail", "Hotmail")).to eq false
+  end
 end

@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative './lib/list.rb'
+require_relative './database_connection_setup.rb'
 require 'pg'
 
 class BookmarkManager < Sinatra::Base
@@ -14,17 +15,28 @@ class BookmarkManager < Sinatra::Base
     erb(:bookmarks)
   end
 
-  post '/update_bookmark' do
-    session[:update_id] = params[:update_id].to_i
-    redirect to('/update_bookmark')
+  post '/store_bookmark_id' do
+    session[:bookmark_id] = params[:bookmark_id].to_i
+    redirect to('/create_comment')
   end
 
-  get '/update_bookmark' do
+  get '/create_comment' do
+    erb(:create_comment)
+    # params[:bookmark_id] params[:comment]
+  end
+
+  post '/create_comment' do
+    # params[:bookmark_id] params[:comment]
+    redirect to('/bookmarks')
+  end
+
+  get '/bookmarks/:id/update' do
+    @bookmark_id = params[:id]
     erb(:update_bookmark)
   end
 
-  patch '/update_bookmark' do
-    List.update_bookmark(params[:url], params[:title], session[:update_id])
+  patch '/bookmarks/:id' do
+    List.update_bookmark(params[:url], params[:title], params[:id])
     redirect to('/bookmarks')
   end
 
@@ -34,7 +46,6 @@ class BookmarkManager < Sinatra::Base
   end
 
   delete '/delete_bookmark' do
-    p params
     List.delete_bookmark(params[:delete_url])
     redirect to('/bookmarks')
   end
