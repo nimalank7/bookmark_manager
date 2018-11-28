@@ -41,7 +41,7 @@ describe List do
   end
   it "finds a bookmark by title 'Google' and returns it" do
     bookmark = List.find_bookmark("Google")
-    expect(bookmark[0].title).to eq "Google"
+    expect(List.search_results[0].title).to eq "Google"
   end
   it "finds a bookmark by Google's URL and returns it" do
     List.find_bookmark("http://google.com")
@@ -54,5 +54,8 @@ describe List do
   it "returns false if invalid URL typed in" do
     List.create_bookmark("hotmail", "Hotmail")
     expect(List.create_bookmark("hotmail", "Hotmail")).to eq false
+  end
+  it "returns all comments for a bookmark" do
+    # Need to write a test for this
   end
 end
