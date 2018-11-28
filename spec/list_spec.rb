@@ -56,6 +56,7 @@ describe List do
     expect(List.create_bookmark("hotmail", "Hotmail")).to eq false
   end
   it "returns all comments for a bookmark" do
-    # Need to write a test for this
+    bookmark = List.find_bookmark("Google")[0]
+    # expect(bookmark.all_comments(...)).to_receive(:all_comments) # Complete
   end
 end
