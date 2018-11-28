@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative './lib/list.rb'
+require_relative './lib/Comment.rb'
 require_relative './database_connection_setup.rb'
 require 'pg'
 
@@ -20,13 +21,13 @@ class BookmarkManager < Sinatra::Base
     redirect to('/create_comment')
   end
 
-  get '/create_comment' do
+  get '/bookmarks/:id/create_comment' do
+    @bookmark_id = params[:id]
     erb(:create_comment)
-    # params[:bookmark_id] params[:comment]
   end
 
-  post '/create_comment' do
-    # params[:bookmark_id] params[:comment]
+  post '/bookmarks/:id/create_comment' do
+    Comment.create_comment(params[:body], params[:id])
     redirect to('/bookmarks')
   end
 
