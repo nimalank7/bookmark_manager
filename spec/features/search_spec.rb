@@ -1,5 +1,5 @@
 feature 'Testing Search Capabilites:' do
-  before(:each) { add_bookmarks } # This adds the bookmarks in
+  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
   scenario "Search for bookmark by title - Google - returns results page" do
     visit('/bookmarks')
     fill_in('search', with: "Google")

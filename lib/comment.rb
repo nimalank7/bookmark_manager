@@ -14,7 +14,7 @@ class Comment
   def self.all_comments(id)
     result = DatabaseConnection.query("SELECT * FROM Comments WHERE bookmark_id = '#{id}'")
     array_of_comments = result.map do |comment|
-      Comment.new(result[0]['bookmark_id'].to_i, result[0]['body'])
+      Comment.new(comment['bookmark_id'].to_i, comment['body'])
     end
   end
 end

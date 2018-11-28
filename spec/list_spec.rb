@@ -3,7 +3,7 @@ require 'pg'
 
 describe List do
   let(:list) { List.new(1, "Microsoft", "http://www.microsoft.com") }
-  before(:each) {add_bookmarks} # This adds the bookmarks in
+  before(:each) {add_bookmarks_and_comments} # This adds the bookmarks in
   it "contains makersacademy in the list of bookmarks when see_list is called" do
     bookmarks = List.see_list
     expect(bookmarks[0].url).to eq "http://www.makersacademy.com"

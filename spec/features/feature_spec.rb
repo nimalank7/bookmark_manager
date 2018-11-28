@@ -1,5 +1,5 @@
 feature 'Testing Bookmark Manager:' do
-  before(:each) { add_bookmarks } # This adds the bookmarks in
+  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
   scenario "Returns Hello World" do
     visit('/')
     expect(page).to have_content("Hello World!")
@@ -27,7 +27,6 @@ feature 'Testing Bookmark Manager:' do
   scenario "Deleting Google bookmark and hence no longer on page" do
     visit('/bookmarks')
     click_button("Delete_Google")
-    expect(current_path).to eq("/bookmarks")
     expect(page).not_to have_content("Google")
   end
   scenario "Click update on Google bookmark and enter new title text appears" do
