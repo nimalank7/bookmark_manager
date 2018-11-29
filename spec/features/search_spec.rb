@@ -1,7 +1,9 @@
+require_relative "./web_helper.rb"
+
 feature 'Testing Search Capabilites:' do
   before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
   scenario "Search for bookmark by title - Google - returns results page" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('search', with: "Google")
     click_button("Search")
     expect(current_path).to eq("/search_results")
@@ -9,7 +11,7 @@ feature 'Testing Search Capabilites:' do
   end
 
   scenario "Search for bookmark by URL - Google - returns results page" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('search', with: "http://www.google.com")
     click_button("Search")
     expect(current_path).to eq("/search_results")
@@ -17,7 +19,7 @@ feature 'Testing Search Capabilites:' do
   end
 
   scenario "Create, search and update BBC bookmark to BBC Sport" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('url', with: "http://www.bbc.co.uk")
     fill_in('title', with: "BBC")
     click_button("Submit")
@@ -34,7 +36,7 @@ feature 'Testing Search Capabilites:' do
     expect(page).to have_content("BBC Sport")
   end
   scenario "Create, search and delete BBC bookmark" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('url', with: "http://www.bbc.co.uk")
     fill_in('title', with: "BBC")
     click_button("Submit")
@@ -48,7 +50,7 @@ feature 'Testing Search Capabilites:' do
     expect(page).not_to have_content("BBC")
   end
   scenario "Return to home after searching" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('search', with: "http://www.google.com")
     click_button("Search")
     expect(current_path).to eq("/search_results")
@@ -57,7 +59,7 @@ feature 'Testing Search Capabilites:' do
     expect(current_path).to eq("/bookmarks")
   end
   scenario "Returns not found search" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('search', with: "http://www.nobookmark.com")
     click_button("Search")
     expect(current_path).to eq("/not_found")
@@ -66,7 +68,7 @@ feature 'Testing Search Capabilites:' do
     expect(current_path).to eq("/bookmarks")
   end
   scenario "Return to home after not found search" do
-    visit('/bookmarks')
+    sign_in_and_submit
     fill_in('search', with: "http://www.nobookmark.com")
     click_button("Search")
     expect(current_path).to eq("/not_found")
