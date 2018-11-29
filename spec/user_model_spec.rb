@@ -1,5 +1,6 @@
 require 'User'
 describe User do
+  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
   it "sets password to argument password" do
     email = "nimalan.kirubakaran@test.com"
     password = "password"

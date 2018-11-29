@@ -10,7 +10,7 @@ describe List do
   end
   it "contains google.com in the list of bookmarks when see_list is called" do
     bookmarks = List.see_list
-    expect(bookmarks[1].url).to eq "http://google.com"
+    expect(bookmarks[1].url).to eq "http://www.google.com"
   end
   it "contains destroyallsoftware in the list of bookmarks when see_list is called" do
     bookmarks = List.see_list
@@ -44,8 +44,8 @@ describe List do
     expect(List.search_results[0].title).to eq "Google"
   end
   it "finds a bookmark by Google's URL and returns it" do
-    List.find_bookmark("http://google.com")
-    expect(List.search_results[0].url).to eq "http://google.com"
+    List.find_bookmark("http://www.google.com")
+    expect(List.search_results[0].url).to eq "http://www.google.com"
   end
   it "doesn't finds a bookmark returns empty array" do
     List.find_bookmark("http://www.hotmail.com")

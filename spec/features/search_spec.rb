@@ -10,7 +10,7 @@ feature 'Testing Search Capabilites:' do
 
   scenario "Search for bookmark by URL - Google - returns results page" do
     visit('/bookmarks')
-    fill_in('search', with: "http://google.com")
+    fill_in('search', with: "http://www.google.com")
     click_button("Search")
     expect(current_path).to eq("/search_results")
     expect(page).to have_content("Google")
@@ -49,7 +49,7 @@ feature 'Testing Search Capabilites:' do
   end
   scenario "Return to home after searching" do
     visit('/bookmarks')
-    fill_in('search', with: "http://google.com")
+    fill_in('search', with: "http://www.google.com")
     click_button("Search")
     expect(current_path).to eq("/search_results")
     expect(page).to have_content("Google")

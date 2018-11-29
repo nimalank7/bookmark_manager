@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require_relative './lib/list.rb'
 require_relative './lib/Comment.rb'
+require_relative './lib/user.rb'
 require_relative './database_connection_setup.rb'
 require 'pg'
 
@@ -8,10 +9,21 @@ class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
 
   get '/' do
-    "Hello World!"
+    erb(:log_in_page)
+  end
+
+  get '/register' do
+    erb(:register)
+  end
+
+  post '/register' do
+    session[:user] = User.create(params[:email], params[:password])
+    redirect to('/bookmarks')
+    # redirect to ('/register') if email already exists.
   end
 
   get '/bookmarks' do
+    @user = session[:user]
     @new_list = List.see_list
     erb(:bookmarks)
   end

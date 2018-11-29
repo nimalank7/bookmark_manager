@@ -9,7 +9,7 @@ class User
   end
 
   def self.create(email, password)
-    result = DatabaseConnection.query(("INSERT INTO Users (email, password) VALUES('#{email}', '#{password}') RETURNING User_id, email, password;"))
-    User.new(result[0]['email'], result[0]['password'], result[0]['User_id'])
+    result = DatabaseConnection.query(("INSERT INTO Users (email, password) VALUES('#{email}', '#{password}') RETURNING user_id, email, password;"))
+    User.new(result[0]['email'], result[0]['password'], result[0]['user_id'])
   end
 end

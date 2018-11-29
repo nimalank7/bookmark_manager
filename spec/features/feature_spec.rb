@@ -1,9 +1,5 @@
 feature 'Testing Bookmark Manager:' do
   before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
-  scenario "Returns Hello World" do
-    visit('/')
-    expect(page).to have_content("Hello World!")
-  end
   scenario "Viewing our bookmarks and expect to have Makers" do
     visit('/bookmarks')
     expect(page).to have_content("Makers Academy")
