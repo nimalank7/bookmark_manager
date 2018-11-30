@@ -1,36 +1,31 @@
 require 'User'
 describe User do
   before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
-  it "sets password to argument password" do
-    email = "nimalan.kirubakaran@test.com"
-    password = "password"
-    id = 1
-    user = User.new(email, password, id)
-    expect(user.password).to eq password
-  end
   it "sets username to argument nimalan.kirubakaran@test.com" do
     email = "nimalan.kirubakaran@test.com"
-    password = "password"
     id = 1
-    user = User.new(email, password, id)
+    user = User.new(email, id)
     expect(user.email).to eq email
   end
   it "creates a user with email nimalan.kirubakaran@test.com" do
     email = "nimalan.kirubakaran@test.com"
     password = "password"
     id = 1
+    expect(BCrypt::Password).to receive(:create).with(password)
     user = User.create(email, password)
     expect(user.email).to eq email
   end
   it "creates a user with email nimalan.kirubakaran@test.com and password as password" do
     email = "nimalan.kirubakaran@test.com"
     password = "password"
+    expect(BCrypt::Password).to receive(:create).with(password)
     user = User.create(email, password)
-    expect(user.password).to eq password
+
   end
   it "returns true if email already exists" do
     email = "nimalan.kirubakaran@test.com"
     password = "password"
+    expect(BCrypt::Password).to receive(:create).with(password)
     User.create(email, password)
     expect(User.already_exists?(email)).to eq true
   end
