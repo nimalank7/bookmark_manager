@@ -6,6 +6,6 @@
 </form>
 <% if @user_taken %>
   <div id="success" style="border: 2px solid green;">
-  <p>Sorry, but that email address is already taken</p>
+  <%= @user_taken %>
   </div>
 <% end %>
