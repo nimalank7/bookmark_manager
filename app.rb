@@ -13,13 +13,17 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/register' do
+    @user_taken = session[:user_email]
     erb(:register)
   end
 
   post '/register' do
+    if User.already_exists?(params[:email])
+      session[:user_email] = params[:email]
+      redirect to('/register')
+    end
     session[:user] = User.create(params[:email], params[:password])
     redirect to('/bookmarks')
-    # redirect to ('/register') if email already exists.
   end
 
   get '/bookmarks' do

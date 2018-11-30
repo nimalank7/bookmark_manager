@@ -4,3 +4,8 @@
   <input type="text" name="password" placeholder="Password" />
   <input type="submit" value="Submit" />
 </form>
+<% if @user_taken %>
+  <div id="success" style="border: 2px solid green;">
+  <p>Sorry, but that email address is already taken</p>
+  </div>
+<% end %>

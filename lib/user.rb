@@ -12,4 +12,8 @@ class User
     result = DatabaseConnection.query(("INSERT INTO Users (email, password) VALUES('#{email}', '#{password}') RETURNING user_id, email, password;"))
     User.new(result[0]['email'], result[0]['password'], result[0]['user_id'])
   end
+  def self.already_exists?(email_address)
+    result = DatabaseConnection.query("SELECT * FROM Users WHERE email = '#{email_address}'")
+    result.any?
+  end
 end

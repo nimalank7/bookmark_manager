@@ -28,4 +28,14 @@ describe User do
     user = User.create(email, password)
     expect(user.password).to eq password
   end
+  it "returns true if email already exists" do
+    email = "nimalan.kirubakaran@test.com"
+    password = "password"
+    User.create(email, password)
+    expect(User.already_exists?(email)).to eq true
+  end
+  it "returns false if email doesn't already exist" do
+    email = "nimalan.kirubakaran@test.com"
+    expect(User.already_exists?(email)).to eq false
+  end
 end
