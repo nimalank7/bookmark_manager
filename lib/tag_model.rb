@@ -21,4 +21,8 @@ class Tag
   def all_bookmarks(bookmark_class = List)
     bookmark_class.all_bookmarks(@id)
   end
+  def self.find(t_id)
+    result = DatabaseConnection.query("SELECT * FROM Tags WHERE tag_id = #{t_id}")
+    Tag.new(result[0]['tag_id'], result[0]['content'])
+  end
 end

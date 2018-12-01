@@ -1,0 +1,6 @@
+<h1>You've tagged the following bookmarks as: <%= @tag_id.content %></h1>
+<ul>
+ <% @bookmarks.each do |bookmark| %>
+   <li><a href= <%= bookmark.url %>><%= bookmark.title %></a></li>
+ <% end %>
+</ul>

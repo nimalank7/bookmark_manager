@@ -29,4 +29,7 @@ describe Tag do
     expect(List).to receive(:all_bookmarks).with(tag.id)
     tag.all_bookmarks(List)
   end
+  it "finds tag by Tag id and returns Housekeeping" do
+    expect(Tag.find(1).content).to eq "Housekeeping"
+  end
 end

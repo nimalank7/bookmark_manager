@@ -14,11 +14,21 @@
    <form action="/bookmarks/<%= bookmark.id %>/create_comment" method="GET">
      <button type="submit" name="bookmark_id" id="Comment_<%= bookmark.title %>" value="<%= bookmark.id %>">Comment</button>
    </form>
+   <form action="/bookmarks/<%= bookmark.id %>/create_tag" method="GET">
+     <button type="submit" name="tag_id" id="Tag_<%= bookmark.title %>" value="<%= bookmark.id %>">Tag</button>
+   </form>
    <ul>
      <li>Comments</li>
       <ul><% bookmark.all_comments.each do |comment| %>
         <li><%= comment.body %>
         </li>
+        <% end %>
+      </ul>
+   </ul>
+   <ul>
+     <li>Tags</li>
+      <ul><% bookmark.all_tags.each do |tag| %>
+        <li><a href="/tags/<%= tag.id %>" id = <%=tag.id %>><%= tag.content%> </a></li>
         <% end %>
       </ul>
    </ul>

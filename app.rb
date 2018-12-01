@@ -2,6 +2,7 @@ require 'sinatra/base'
 require_relative './lib/list.rb'
 require_relative './lib/Comment.rb'
 require_relative './lib/user.rb'
+require_relative './lib/bookmark_tag_model.rb'
 require_relative './database_connection_setup.rb'
 require 'pg'
 
@@ -42,6 +43,28 @@ class BookmarkManager < Sinatra::Base
     @user = session[:user]
     @new_list = List.see_list
     erb(:bookmarks)
+  end
+
+  get '/tags/:id' do
+    @tag_id = Tag.find(params[:id])
+    @bookmarks = @tag_id.all_bookmarks
+    erb(:bookmarks_for_tag)
+  end
+
+  get '/bookmarks/:id/create_tag' do
+    @bookmark_id = params[:id]
+    erb(:create_tag)
+  end
+
+  post'/bookmarks/:id/create_tag' do
+    tag_id = Tag.create(params[:content]).id
+    BookmarkTag.create(params[:id], tag_id)
+    redirect to('/bookmarks')
+  end
+
+  post '/bookmarks/:id/create_comment' do
+    Comment.create_comment(params[:body], params[:id])
+    redirect to('/bookmarks')
   end
 
   post '/store_bookmark_id' do

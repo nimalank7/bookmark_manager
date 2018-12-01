@@ -12,7 +12,7 @@ def setup_test_database
   connection.exec 'CREATE TABLE Comments (Comment_ID SERIAL PRIMARY KEY, Body VARCHAR(240), Bookmark_id INTEGER, FOREIGN KEY (Bookmark_id) REFERENCES Bookmarks (id) ON DELETE CASCADE)'
   connection.exec 'CREATE TABLE Users(user_ID SERIAL PRIMARY KEY, email VARCHAR(60), password VARCHAR(140))'
   connection.exec 'CREATE TABLE Tags(tag_ID SERIAL PRIMARY KEY, content VARCHAR(60))'
-  connection.exec 'CREATE TABLE Bookmark_Tag (Join_ID SERIAL PRIMARY KEY, Bookmark_id INTEGER, FOREIGN KEY (Bookmark_id) REFERENCES Bookmarks (id), tag_id INTEGER, FOREIGN KEY (tag_id) REFERENCES Tags (tag_id))'
+  connection.exec 'CREATE TABLE Bookmark_Tag (Join_ID SERIAL PRIMARY KEY, Bookmark_id INTEGER, FOREIGN KEY (Bookmark_id) REFERENCES Bookmarks (id) ON DELETE CASCADE, tag_id INTEGER, FOREIGN KEY (tag_id) REFERENCES Tags (tag_id))'
 end
 
 def add_bookmarks_and_comments_and_users
