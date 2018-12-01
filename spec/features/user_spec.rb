@@ -37,4 +37,12 @@ feature 'Testing User features:' do
     click_button("Login")
     expect(page).to have_content("Please enter the correct email or password")
   end
+  scenario "Signing out returns user to index page" do
+    visit('/')
+    fill_in('email', with: "nimalan.kirubakaran@test.com")
+    fill_in('password', with: "password")
+    click_button("Login")
+    click_link("Sign Out")
+    expect(page).to have_content("Please enter your username and password")
+  end
 end

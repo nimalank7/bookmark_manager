@@ -96,5 +96,10 @@ class BookmarkManager < Sinatra::Base
     erb(:search_results)
   end
 
+  get '/sign_out' do
+    session.clear
+    redirect to('/')
+  end
+
   run! if app_file == $0
 end

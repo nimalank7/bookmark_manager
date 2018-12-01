@@ -2,6 +2,7 @@ require 'pg'
 require 'uri'
 require_relative "./database_connection.rb"
 require_relative "./comment.rb"
+require_relative "./tag_model.rb"
 
 class List
   attr_reader :id, :title, :url
@@ -44,6 +45,9 @@ class List
   end
   def all_comments(comment_class = Comment)
     comment_class.all_comments(@id)
+  end
+  def all_tags(tag_class = Tag)
+    tag_class.all_tags(@id)
   end
   private
   def self.is_url?(url)
