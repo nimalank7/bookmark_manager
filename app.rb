@@ -62,16 +62,6 @@ class BookmarkManager < Sinatra::Base
     redirect to('/bookmarks')
   end
 
-  post '/bookmarks/:id/create_comment' do
-    Comment.create_comment(params[:body], params[:id])
-    redirect to('/bookmarks')
-  end
-
-  post '/store_bookmark_id' do
-    session[:bookmark_id] = params[:bookmark_id].to_i
-    redirect to('/create_comment')
-  end
-
   get '/bookmarks/:id/create_comment' do
     @bookmark_id = params[:id]
     erb(:create_comment)

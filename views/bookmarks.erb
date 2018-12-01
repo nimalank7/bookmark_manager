@@ -4,19 +4,21 @@
 <ul>
  <% @new_list.each do |bookmark| %>
    <li><a href= <%= bookmark.url %>><%= bookmark.title %></a></li>
-   <form action="/delete_bookmark" method="POST">
-     <input id="hidden" type="hidden" name="_method" value="delete">
-     <button type="submit" name="delete_url" id="Delete_<%= bookmark.title %>" value="<%= bookmark.url %>">Delete</button>
-   </form>
-   <form action="/bookmarks/<%= bookmark.id %>/update" method="GET">
-     <button type="submit" name="update_id" id="Update_<%= bookmark.title %>" value="<%= bookmark.id %>">Update</button>
-   </form>
-   <form action="/bookmarks/<%= bookmark.id %>/create_comment" method="GET">
-     <button type="submit" name="bookmark_id" id="Comment_<%= bookmark.title %>" value="<%= bookmark.id %>">Comment</button>
-   </form>
-   <form action="/bookmarks/<%= bookmark.id %>/create_tag" method="GET">
-     <button type="submit" name="tag_id" id="Tag_<%= bookmark.title %>" value="<%= bookmark.id %>">Tag</button>
-   </form>
+   <div>
+     <form action="/delete_bookmark" method="POST">
+       <input id="hidden" type="hidden" name="_method" value="delete">
+       <button type="submit" name="delete_url" id="Delete_<%= bookmark.title %>" value="<%= bookmark.url %>">Delete</button>
+     </form>
+     <form action="/bookmarks/<%= bookmark.id %>/update" method="GET">
+       <button type="submit" name="update_id" id="Update_<%= bookmark.title %>" value="<%= bookmark.id %>">Update</button>
+     </form>
+     <form action="/bookmarks/<%= bookmark.id %>/create_comment" method="GET">
+       <button type="submit" name="bookmark_id" id="Comment_<%= bookmark.title %>" value="<%= bookmark.id %>">Comment</button>
+     </form>
+     <form action="/bookmarks/<%= bookmark.id %>/create_tag" method="GET">
+       <button type="submit" name="tag_id" id="Tag_<%= bookmark.title %>" value="<%= bookmark.id %>">Tag</button>
+     </form>
+   </div>
    <ul>
      <li>Comments</li>
       <ul><% bookmark.all_comments.each do |comment| %>
