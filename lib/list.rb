@@ -49,6 +49,13 @@ class List
   def all_tags(tag_class = Tag)
     tag_class.all_tags(@id)
   end
+  def self.all_bookmarks(t_id)
+    result = DatabaseConnection.query("SELECT Bookmarks.id, Bookmarks.title, Bookmarks.url FROM Bookmarks INNER JOIN Bookmark_Tag ON Bookmarks.id = Bookmark_Tag.bookmark_id WHERE Bookmark_Tag.tag_id = '#{t_id}'")
+    array_of_bookmarks = result.map do |bookmark|
+      List.new(bookmark['id'], bookmark['title'], bookmark['url'])
+    end
+  end
+
   private
   def self.is_url?(url)
     url =~ /\A#{URI::regexp(['http','https'])}\z/

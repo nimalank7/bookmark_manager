@@ -1,5 +1,6 @@
 require_relative "../lib/database_connection.rb"
 require_relative "./bookmark_tag_model.rb"
+require_relative "./list.rb"
 
 class Tag
   attr_reader :id, :content
@@ -16,5 +17,8 @@ class Tag
     array_of_tags = result.map do |tag|
       Tag.new(tag['tag_id'], tag['content'])
     end
+  end
+  def all_bookmarks(bookmark_class = List)
+    bookmark_class.all_bookmarks(@id)
   end
 end

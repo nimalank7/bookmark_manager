@@ -65,4 +65,13 @@ describe List do
     expect(bookmark).to receive(:all_tags).with(Tag)
     bookmark.all_tags(Tag)
   end
+  it "returns all bookmarks for a tag" do
+    expect(List.all_bookmarks(1).length).to eq 2
+  end
+  it "returns all bookmarks for a tag" do
+    expect(List.all_bookmarks(1)[0].title).to eq "Makers Academy"
+  end
+  it "returns all bookmarks for a tag" do
+    expect(List.all_bookmarks(1)[1].title).to eq "Google"
+  end
 end

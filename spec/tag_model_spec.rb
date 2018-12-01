@@ -24,4 +24,9 @@ describe Tag do
   it "returns the 'Housekeeping' tag for that bookmark" do
     expect(Tag.all_tags(1)[1].content).to eq "Travel"
   end
+  it "returns all bookmarks for a given tag" do
+    tag = Tag.new(1, "Housekeeping")
+    expect(List).to receive(:all_bookmarks).with(tag.id)
+    tag.all_bookmarks(List)
+  end
 end
