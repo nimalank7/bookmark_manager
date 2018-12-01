@@ -9,21 +9,32 @@ class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
 
   get '/' do
+    @sign_in = session[:sign_in_message]
     erb(:log_in_page)
   end
 
+  post '/sign_in' do
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user] = user
+      redirect to('/bookmarks')
+    end
+    session[:sign_in_message] = "Please enter the correct email or password"
+    redirect to('/')
+  end
+
   get '/register' do
-    @user_taken = session[:message]
+    @user_taken = session[:register_message]
     erb(:register)
   end
 
   post '/register' do
     if User.already_exists?(params[:email])
-      session[:message] = "Sorry, but that email address is already taken"
+      session[:register_message] = "Sorry, but that email address is already taken"
       redirect to('/register')
     end
     session[:user] = User.create(params[:email], params[:password])
-    session[:message] = "You are already logged in. Do you want to create another user?"
+    session[:register_message] = "You are already logged in. Do you want to create another user?"
     redirect to('/bookmarks')
   end
 

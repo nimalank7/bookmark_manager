@@ -1,5 +1,5 @@
 feature 'Testing Bookmark Manager:' do
-  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
+  before(:each) { add_bookmarks_and_comments_and_users } # This adds the bookmarks in
   scenario "Viewing our bookmarks and expect to have Makers" do
     sign_in_and_submit
     expect(page).to have_content("Makers Academy")

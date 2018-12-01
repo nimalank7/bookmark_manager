@@ -1,5 +1,5 @@
 feature 'Testing Comments' do
-  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
+  before(:each) { add_bookmarks_and_comments_and_users } # This adds the bookmarks in
   scenario "Clicking on comment for Google and displays Please comment'" do
     sign_in_and_submit
     click_button("Comment_Google")

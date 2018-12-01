@@ -1,2 +1,12 @@
-<h1>Log in here</h1>
+<h1>Please enter your username and password</h1>
+<form action="/sign_in" method="POST">
+  <input type="text" name="email" placeholder="Email" />
+  <input type="text" name="password" placeholder="Password" />
+  <input type="submit" value="Login" />
+</form>
+<% if @sign_in %>
+  <div id="failure" style="border: 2px solid green;">
+  <%= @sign_in %>
+  </div>
+<% end %>
 <a href="/register">Sign up</a>

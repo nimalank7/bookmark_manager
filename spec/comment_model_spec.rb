@@ -2,7 +2,7 @@ require 'comment'
 require 'pg'
 
 describe Comment do
-  before(:each) {add_bookmarks_and_comments}
+  before(:each) {add_bookmarks_and_comments_and_users}
   it "creates a comment when passed text and bookmark id" do
     comment = Comment.create_comment("Hello World", 1)
     expect(comment.body).to eq "Hello World"

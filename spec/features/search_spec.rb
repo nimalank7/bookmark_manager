@@ -1,7 +1,7 @@
 require_relative "./web_helper.rb"
 
 feature 'Testing Search Capabilites:' do
-  before(:each) { add_bookmarks_and_comments } # This adds the bookmarks in
+  before(:each) { add_bookmarks_and_comments_and_users } # This adds the bookmarks in
   scenario "Search for bookmark by title - Google - returns results page" do
     sign_in_and_submit
     fill_in('search', with: "Google")
